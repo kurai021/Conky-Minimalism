@@ -16,11 +16,13 @@ conky.config = {
 
   -- -- Window specifications -- #
 	    own_window = true,
-      own_window_type = 'dock',
-      own_window_argb_visual = true,
-      own_window_argb_value = 0,
-	    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
-      own_window_title = 'clicky',
+	    own_window_type = 'dock',
+      	own_window_transparent = false,
+      	own_window_argb_visual = true,
+		own_window_argb_value = 0,
+      	own_window_colour = '000000',
+	  	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+      	own_window_title = 'clicky',
 
 	    border_inner_margin = 50,
 	    border_outer_margin = 0,
@@ -57,34 +59,36 @@ conky.config = {
 	    minimum_width = 400, minimum_height = 700,
 
       --CORRECT THIS PATH
-      lua_load = '~/.conky/minimalism/clocks.lua',
-      lua_draw_hook_pre = 'clock_rings',
-      --lua_load = '~/.conky/minimalism/clicky.lua',
-      --lua_draw_hook_pre = 'main',
+      lua_load = '~/Conky-Minimalism-master/clocks.lua',
+      lua_draw_hook_pre = 'clock_rings'
 };
 
 conky.text = [[
 
   ${voffset -25}${offset 180}${font neuropol:size=20}${time %H:%M}${font}  ${font Nimbus Mono L:size=9}$uptime
-  ${voffset 14}${offset 178}${color #ad1a26}${font Roboto-Italic:size=12}${exec date +%B\ %Y | sed 's/^.\| [a-z]/\U&/g'}
-  ##Replace 'enp3s0' with name of your network interface
-  ${offset 122}${voffset 75}${color #FFFFFF}${font Roboto-Medium:size=17}Dw  ${color #ad1a26}${downspeed enp3s0}
-  ##Replace 'enp3s0' with name of your network interface
-  ${offset 118}${voffset 10}${color #FFFFFF}Up ${offset 10}${color #ad1a26}${upspeed enp3s0}
-  ##Replace 'enp3s0' with name of your network interface
-  ${offset 120}${voffset 5}${font Roboto-Regularsize=12}${color #FFFFFF}TDown   ${color #00695c}${totaldown enp3s0}
-  #${offset 90}${voffset 30}${font Roboto-Regularsize=12}${color #FFFFFF}Song:${offset 21}${color #af1616}${scroll 17 ${execi 2 ~/.conky/minimalism/cmus-conky}}
-  ${offset 68}${voffset 120}${font Roboto-Regular:size=15}${color #FFFFFF}CPU
-  ${offset 188}${voffset 35}${font Roboto-Regular:size=8}Core 0
-  ${offset 234}${voffset -15}Core 1
-  ${offset 274}${voffset -15}Core 2
-  ${offset 314}${voffset -15}Core 3
-
-  ${offset 100}${voffset 3}${font Roboto-Regular:size=11}${fs_used /} / ${fs_size /}
-  ${offset 90} $mem / $memmax
-  ${offset 175}${color #ad1a26}[$memperc%]
-  ${offset 205}${voffset 2}${color #ffffff}${font Roboto-Bold:size=14}MEM
+  ${voffset 14}${offset 178}${color #ffffff}${font Roboto-Italic:size=12}${exec date +%d\ %B\ %Y | sed 's/^.\| [a-z]/\U&/g'}
+  ##Replace 'wlp3s0' with name of your network interface
+  ${offset 30}${voffset 70}${color #FFFFFF}${font Roboto-Medium:size=17}Dw  ${downspeedgraph wlp3s0 26,80 FFFFFF FFFFFF}
+  ${offset 95}${voffset -10}${font Roboto-Regular:size=8}${downspeed wlp3s0}
+  ##Replace 'wlp3s0' with name of your network interface
+  ${offset 35}${voffset 0}${color #FFFFFF}${font Roboto-Medium:size=17}Up ${upspeedgraph wlp3s0 26,80 FFFFFF FFFFFF}
+  ${offset 95}${voffset -10}${font Roboto-Regular:size=8}${upspeed wlp3s0}
+  ##Replace 'wlp3s0' with name of your network interface
+  ${offset 35}${voffset 10}${font Roboto-Regular:size=12}${color #FFFFFF}TDown   ${color #ffffff}${totaldown wlp3s0}
+  ${offset 60}${voffset 125}${font Roboto-Regular:size=15}${color #FFFFFF}CPU
+  ${offset 260}${voffset 10}${font Roboto-Regular:size=8}CPU Temp
+  #I have /home in a different partition, but maybe is not your case
+  ${offset 30}${voffset 70}${color #FFFFFF}${font Roboto-Medium:size=14}Home  ${font Roboto-Regular:size=11}${fs_used /home} / ${fs_size /home}
+  ${offset 30}${color #FFFFFF}${font Roboto-Medium:size=14}Root  ${font Roboto-Regular:size=11}${fs_used /} / ${fs_size /}
+  ${offset 30}${color #FFFFFF}${font Roboto-Medium:size=14}RAM  ${font Roboto-Regular:size=11}$mem / $memmax
+  #You can remove it if you don't have swap partition
+  ${offset 30}${color #FFFFFF}${font Roboto-Medium:size=14}Swap  ${font Roboto-Regular:size=11}$swap / $swapmax
+  ${offset 30}${voffset 100}${font Roboto-Medium:size=14}Weather
+  #Change Panama to your country and lang as en.png, it.png etc...
+  ${texeci 1800 curl --output wttr.png "wttr.in/panama_0pq_lang=es.png"}
+  ${offset 205}${voffset -160}${color #ffffff}${font Roboto-Bold:size=14}MEM
   ##CORRECT THIS PATH
-  ${image ~/.conky/minimalism/Archlinux-icon.png -p 280,130 -s 110x110}
+  ${image ~/Conky-Minimalism-master/manjaro.png -p 250,120 -s 120x125}
+  ${image ./wttr.png -p 80,730 -s 266x140}
 
 ]];
