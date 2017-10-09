@@ -10,7 +10,7 @@ A Simple Conky config
   1. Extract the zip file
   2. Change the paths in minimalismRC & startup.sh
   3. Run startup.sh
-  
-Note: If Core temps are not displayed correctly, see line 264 in clocks.lua 
 
-![alt text](https://raw.githubusercontent.com/NoTranslation/Conky-Minimalism/master/example.png)
+Note: If Core temps are not displayed correctly, see line 291 in clocks.lua
+
+![alt text](https://i.imgur.com/o1LkmZd.png)
